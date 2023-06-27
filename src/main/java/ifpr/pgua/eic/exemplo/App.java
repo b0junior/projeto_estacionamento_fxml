@@ -2,7 +2,11 @@ package ifpr.pgua.eic.exemplo;
 
 import java.util.ArrayList;
 
+import ifpr.pgua.eic.exemplo.controllers.TelaCadastro;
+import ifpr.pgua.eic.exemplo.controllers.TelaPrincipal;
+import ifpr.pgua.eic.exemplo.controllers.TelaVisualizar;
 import ifpr.pgua.eic.exemplo.models.Estacionamento;
+import ifpr.pgua.eic.infra.Escritor;
 import io.github.hugoperlin.navigatorfx.BaseAppNavigator;
 import io.github.hugoperlin.navigatorfx.ScreenRegistryFXML;
 import io.github.hugoperlin.navigatorfx.ScreenRegistryNoFXML;
@@ -41,11 +45,31 @@ public class App extends BaseAppNavigator{
     public String getAppTitle() {
         return "Quiz App";
     }
+    
+    @Override
+    public void stop() throws Exception {
+        // TODO Auto-generated method stub
+        super.stop();
+        
+        Escritor escritor = new Escritor();
+        escritor.salvar("veiculos.txt", gerenciador.listaTodosVeiculos());
+    }
 
     /*método para registrar as telas da aplicação*/
     @Override
     public void registrarTelas() {
-        
-    }
+        registraTela("PRINCIPAL",
+                      new ScreenRegistryFXML(App.class, 
+                                         "principal.fxml", 
+                                          o->new TelaPrincipal()));
+        registraTela("CADASTRO", 
+                      new ScreenRegistryFXML(App.class, 
+                                             "cadastro.fxml",
+                                            o->new TelaCadastro(gerenciador)));
+        registraTela("VISUALIZAR",
+                     new ScreenRegistryFXML(App.class, 
+                                           "visualizar.fxml", o->new TelaVisualizar(gerenciador)));                                
+    
+        }
     
 }
