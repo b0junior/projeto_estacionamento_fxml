@@ -40,11 +40,21 @@ public class TelaCadastro {
         int ano = Integer.valueOf(sAno);
 
         estacionamento.cadastraVeiculo(placa, modelo, fabricante, ano, cor);
+        
+        limpar();
     }
 
     @FXML
     void voltar(ActionEvent event) {
         App.popScreen();
+    }
+    
+    private void limpar(){
+        tfAnoFabricacao.clear();
+        tfCor.clear();
+        tfFabricante.clear();
+        tfModelo.clear();
+        tfPlaca.clear();
     }
 
 }

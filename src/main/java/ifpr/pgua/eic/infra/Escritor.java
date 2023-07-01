@@ -13,7 +13,7 @@ public class Escritor {
             BufferedWriter bw = new BufferedWriter(fw);
             
             for(Veiculo v: lista){
-                String linha = String.join(":",
+                String linha = String.join(";",
                                             v.getPlaca(),
                                             v.getModelo(),
                                             v.getFabricante(),

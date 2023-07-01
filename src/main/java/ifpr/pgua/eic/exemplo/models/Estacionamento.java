@@ -41,6 +41,11 @@ public class Estacionamento {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+    
+    public void setVeiculos(ArrayList<Veiculo> lista){
+        this.veiculos.clear();
+        this.veiculos.addAll(lista);
+    }
 
     public ArrayList<Veiculo> listaTodosVeiculos(){
         return veiculos;

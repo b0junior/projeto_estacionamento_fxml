@@ -6,7 +6,9 @@ import ifpr.pgua.eic.exemplo.controllers.TelaCadastro;
 import ifpr.pgua.eic.exemplo.controllers.TelaPrincipal;
 import ifpr.pgua.eic.exemplo.controllers.TelaVisualizar;
 import ifpr.pgua.eic.exemplo.models.Estacionamento;
+import ifpr.pgua.eic.exemplo.models.Veiculo;
 import ifpr.pgua.eic.infra.Escritor;
+import ifpr.pgua.eic.infra.Leitor;
 import io.github.hugoperlin.navigatorfx.BaseAppNavigator;
 import io.github.hugoperlin.navigatorfx.ScreenRegistryFXML;
 import io.github.hugoperlin.navigatorfx.ScreenRegistryNoFXML;
@@ -30,8 +32,12 @@ public class App extends BaseAppNavigator{
     @Override
     public void init() throws Exception {
         super.init();
+        
 
+        Leitor leitor = new Leitor();
+        ArrayList<Veiculo> lista = leitor.carregar("veiculos.txt"); 
         gerenciador = new Estacionamento("SuperEstac", "1234-1234");
+        gerenciador.setVeiculos(lista);
     }
 
     /*método para indicar qual é a tela inicial da aplicação */

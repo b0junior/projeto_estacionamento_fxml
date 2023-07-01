@@ -1,0 +1,44 @@
+package ifpr.pgua.eic.infra;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
+import ifpr.pgua.eic.exemplo.models.Veiculo;
+
+public class Leitor {
+
+    public ArrayList<Veiculo> carregar(String nomeArquivo){
+        ArrayList<Veiculo> lista = new ArrayList<>();
+
+        try {
+            FileReader fr = new FileReader(nomeArquivo);
+            BufferedReader br = new BufferedReader(fr);
+
+            String linha = br.readLine();
+            while(linha != null){
+                String[] tokens = linha.split(";");
+                String placa = tokens[0];
+                String modelo = tokens[1];
+                String fabricante = tokens[2];
+                String anoFabricacao = tokens[3];
+                String cor = tokens[4];
+                
+                Veiculo v = new Veiculo(placa, modelo, fabricante,
+                        Integer.parseInt(anoFabricacao), cor);
+                
+                lista.add(v);
+
+                linha = br.readLine();
+            }
+            br.close();
+            fr.close();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return lista;
+    }
+    
+}

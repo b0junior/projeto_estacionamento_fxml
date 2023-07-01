@@ -92,7 +92,10 @@ public class Veiculo {
     }
 
     public String toString(){
-        return placa;
+        return 
+            "Placa: "+this.placa
+            +"Modelo: "+this.modelo
+            +"Cor: "+this.cor;
     }
     
 }
